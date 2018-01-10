@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Description here -->
+    <string name="app_name" translatable="false">Smart Credit Use</string>
+    <!-- Description here -->
+    <string name="smslayoutrow_textViewSender" translatable="false">Sender</string>
+    <!-- Description here -->
+    <string name="smslayoutrow_textViewBody" translatable="false">body</string>
+    <!-- Description here -->
+    <string name="MainActivity_Message" translatable="false">Your Credit Cards</string>
+    <!-- Description here -->
+    <string name="smsrowlist_cardimage" translatable="false">Card Image</string>
+    <!-- Description here -->
+    <string name="cardtranlistitem_tranamt" translatable="false">Tran Amt</string>
+    <!-- Description here -->
+    <string name="cardtranlistitem_vendor" translatable="false">Vendor</string>
+    <!-- Description here -->
+    <string name="cardtranlistitem_date" translatable="false">Date</string>
+    <!-- Description here -->
+    <string name="title_activity_transaction_viewer" translatable="false">TransactionViewer</string>
+    <!-- Description here -->
+    <string name="tranviewer_title_sectionSummary" translatable="false">Summary</string>
+    <!-- Description here -->
+    <string name="tranviewer_title_sectionTrans" translatable="false">Transactions</string>
+    <!-- Description here -->
+    <string name="tranviewer_title_sectionPayment" translatable="false">Payments</string>
+    <!-- Description here -->
+    <string name="tranviewer_title_sectionSMSBanking" translatable="false">SMS Banking</string>
+    <!-- Description here -->
+    <string name="title_activity_add_card_details" translatable="false">AddCardDetails</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_textViewlabelcreditlimit" translatable="false">Credit Limit</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_stmtgendate" translatable="false">Stmt. Date</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_CreditPeriod" translatable="false">Credit Period</string>
+    <!-- Description here -->
+    <string name="AddCreditDetails_adddetails" translatable="false">Save Details</string>
+    <!-- Description here -->
+    <string name="mainactivity_actionbaredit" translatable="false">Edit</string>
+    <!-- Description here -->
+    <string name="mainactivity_actionbarDelete" translatable="false">Delete</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_CreditCardDetails" translatable="false">Card Details</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_ValidateDateRequired" translatable="false">Stmt Date is required</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_ValidateCrLimitRequired" translatable="false">Please enter valid credit limit</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_ValidateCrPeriodRequired" translatable="false">Please enter valid credit period</string>
+    <!-- Description here -->
+    <string name="AddCardDetails_updateFailed" translatable="false">Failed to update details</string>
+    <!-- Description here -->
+    <string name="MainActivity_DeleteCardMsg" translatable="false">All the transaction/payment data can not be retreived. Are you sure you want to delete card?</string>
+    <!-- Description here -->
+    <string name="tranviewer_durationoptionsCurCycle" translatable="false">Current Cycle</string>
+    <!-- Description here -->
+    <string name="tranviewer_durationoptionsLast3Cycle" translatable="false">Last 3 Cycles</string>
+    <!-- Description here -->
+    <string name="tranviewer_durationoptionsLast6Cycle" translatable="false">Last 6 Cycles</string>
+    <!-- Description here -->
+    <string name="smslistrow_indicator" translatable="false">indicator</string>
+    <!-- Description here -->
+    <string name="MainActivity_goodcardmsg" translatable="false">Your best choice today for any purchases based on credit period and limit. </string>
+    <!-- Description here -->
+    <string name="title_activity_splashscreen" translatable="false">SmartCreditUse</string>
+    <!-- Description here -->
+    <string name="CardTran_alltrans" translatable="false">All Transactions</string>
+    <!-- Description here -->
+    <string name="CardTran_allpayments" translatable="false">All Payments</string>
+    <!-- Description here -->
+    <string name="ad_unit_id_Main" translatable="false">ca-app-pub-9816217425568785/1896263558</string>
+    <!-- Description here -->
+    <string name="ad_unit_id_TranView" translatable="false">ca-app-pub-9816217425568785/3372996751</string>
+    <!-- Description here -->
+    <string name="Tranview_CurrentCycle" translatable="false">CURRENT CYCLE</string>
+    <!-- Description here -->
+    <string name="Tranview_PaymentDue" translatable="false">Total Tran Amt :</string>
+    <!-- Description here -->
+    <string name="Tranview_PaymentDueVal" translatable="false">1,200.50</string>
+    <!-- Description here -->
+    <string name="Tranview_Currency" translatable="false">₹</string>
+    <!-- Description here -->
+    <string name="Tranview_PaymentDueDate" translatable="false">Payment Due Date :</string>
+    <!-- Description here -->
+    <string name="Tranview_PaymentDueDateVal" translatable="false">12-Jun-2014</string>
+    <!-- Description here -->
+    <string name="MainActivity_Share" translatable="false">Info</string>
+    <!-- Description here -->
+    <string name="AppPackageURL" translatable="false">http://play.google.com/store/apps/details?id=</string>
+    <!-- Description here -->
+    <string name="MainActivity_ShareMessage" translatable="false">Use your credit card smartly with </string>
+    <string name="Tranviewer_GraphYLabel" translatable="false">Amount in ₹</string>
+    <string name="Transactionviewer_GraphTitle" translatable="false">Transactios vs Payments Chart</string>
+    <string name="smsbanklistitem_textViewOperation" translatable="false">Operation</string>
+    <string name="smsbanklistitem_imageSend" translatable="false">Send</string>
+    <string name="SMSBanking_DigitWarning" translatable="false">You need to enter last 6 digits in case of multiple credit cards, please edit manually when you go to SMS editor</string>
+    <string name="title_activity_report_missing_card" translatable="false">Report Missing Card</string>
+    <string name="title_activity_about_smart_credit_use" translatable="false">About Smart Credit Use</string>
+    <string name="aboutscu_mycardnotlisted" translatable="false">My Card is not Listed</string>
+    <string name="aboutscu_Share" translatable="false">Share</string>
+    <string name="aboutscu_SendFeedback" translatable="false">Send Feedback</string>
+    <string name="aboutscu_YourFeedback" translatable="false">Your Feedback</string>
+    <string name="aboutscu_Vidyabhimail" translatable="false">vidyabhisol@gmail.com</string>
+    <string name="reportmisingcard_report" translatable="false">REPORT</string>
+    <string name="reportmisingcard_CardMessages" translatable="false">Card Messages</string>
+    <string name="reportmissingcard_message" translatable="false">Please select the messages that are not getting scanned</string>
+    <string name="mainactivity_Analytics" translatable="false">Analytics</string>
+    <string name="title_activity_card_analytics" translatable="false">CardAnalytics</string>
+    <string name="cardanalytics_topvendors">Top Vendors</string>
+    <string name="cardanalytics_topcards">Top Cards</string>
+    <string name="cardanalytics_SpendingAnalysis">Your Spendings</string>
+    
+</resources>

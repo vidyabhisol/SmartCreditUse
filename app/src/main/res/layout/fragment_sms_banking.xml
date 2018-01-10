@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/SMSBanking_textViewDigitWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ic_topgreenheadingbg"
+        android:padding="5dp"
+        android:text="@string/SMSBanking_DigitWarning"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
+
+    <ListView
+        android:id="@+id/SMSBanking_listViewSMSBank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_midbluebg" >
+
+    </ListView>
+
+</RelativeLayout>

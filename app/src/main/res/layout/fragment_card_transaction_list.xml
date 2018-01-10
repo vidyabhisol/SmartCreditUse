@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+
+    <TextView
+        android:id="@+id/CardTran_textViewAllTran"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/ic_topgreenheadingbg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="@string/CardTran_alltrans"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white" />
+
+    <ListView
+        android:id="@+id/CardTran_listViewCardTrans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/CardTran_textViewAllTran"
+        android:background="@drawable/ic_midbluebg" >
+
+    </ListView>
+
+   
+</RelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/smsbanklistitem_textViewOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/smsbanklistitem_imageButtonSend"
+        android:padding="10dp"
+        android:text="@string/smsbanklistitem_textViewOperation"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+    <ImageButton
+        android:id="@+id/smsbanklistitem_imageButtonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/smsbanklistitem_imageSend"
+        android:src="@android:drawable/ic_menu_send" />
+
+</RelativeLayout>

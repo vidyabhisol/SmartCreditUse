@@ -1,0 +1,138 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+ 
+<RelativeLayout 
+    android:id="@+id/TranView_relativeLayoutBase"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.VidyabhiSol.smartcredituse.TransactionViewer$PlaceholderFragment" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_ChartOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_vendorwisebg"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+
+        <Button
+            android:id="@+id/Tranview_ButtonCurCycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_currentmonth"
+            android:text="@string/tranviewer_durationoptionsCurCycle"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Tranview_ButtonLast3Cycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_pastthreemonths"
+            android:text="@string/tranviewer_durationoptionsLast3Cycle"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/Tranview_ButtonLast6Cycles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/ic_pastsixmonths"
+            android:text="@string/tranviewer_durationoptionsLast6Cycle"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/TranView_relativeLayoutByDate"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_below="@+id/LinearLayout_ChartOptions"
+        android:background="@android:color/white" >
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Tranview_textViewCurCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/TranView_relativeLayoutByDate"
+        android:background="@drawable/ic_topgreenheadingbg"
+        android:padding="10dp"
+        android:text="@string/Tranview_CurrentCycle"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+    <RelativeLayout
+        android:id="@+id/TranView_RelativeLayoutPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Tranview_textViewCurCycle"
+        android:background="@drawable/ic_midbluebg" >
+
+        <TextView
+            android:id="@+id/Tranview_textViewPaymentDueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/Tranview_PaymentDue"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+        <TextView
+            android:id="@+id/Tranview_textViewCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Tranview_textViewPaymentDueLabel"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/Tranview_textViewPaymentDueLabel"
+            android:padding="5dp"
+            android:text="@string/Tranview_Currency"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+        <TextView
+            android:id="@+id/Tranview_textViewPaymentDue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Tranview_textViewPaymentDueLabel"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/Tranview_textViewCurrency"
+            android:padding="5dp"
+            android:text="@string/Tranview_PaymentDueVal"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+        
+        <TextView
+            android:id="@+id/Tranview_textViewPaymentDueDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Tranview_textViewPaymentDueLabel"
+            android:layout_below="@+id/Tranview_textViewPaymentDueLabel"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/Tranview_PaymentDueDate"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+        
+        <TextView
+            android:id="@+id/Tranview_textViewPaymentDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Tranview_textViewPaymentDueDateLabel"
+            android:layout_alignLeft="@+id/Tranview_textViewCurrency"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/Tranview_textViewPaymentDueDateLabel"
+            android:padding="5dp"
+            android:text="@string/Tranview_PaymentDueDateVal"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+        
+    </RelativeLayout>
+</RelativeLayout>
+</ScrollView>

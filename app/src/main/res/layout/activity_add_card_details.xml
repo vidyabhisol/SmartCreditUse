@@ -1,0 +1,142 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/AddCardDetails_textViewLabelCreditCardDetails"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/ic_topgreenheadingbg"
+        android:gravity="fill_vertical"
+        android:paddingLeft="10dp"
+        android:text="@string/AddCardDetails_CreditCardDetails"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout_creditlimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AddCardDetails_textViewLabelCreditCardDetails"
+        android:background="@drawable/ic_midbluebg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/AddCardDetails_textViewCreditLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/AddCardDetails_textViewlabelcreditlimit"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/AddCardDetails_editTextCreditLimit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/textinputborder"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_stmtdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout_creditlimit"
+        android:background="@drawable/ic_midbluebg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/AddCardDetails_textViewStmtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/AddCardDetails_stmtgendate"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/AddCardDetails_editTextStmtDate"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/textinputborder"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="date"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/white" >
+
+            <requestFocus />
+        </EditText>
+        
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_creditperiod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LinearLayout_stmtdate"
+        android:background="@drawable/ic_midbluebg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/AddCardDetails_textViewCreditPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/AddCardDetails_CreditPeriod"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/AddCardDetails_editTextCreditPeriod"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/textinputborder"
+            android:ems="10"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:selectAllOnFocus="true"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LinearLayout_creditperiod"
+        android:background="@drawable/ic_midbluebg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <Button
+            android:id="@+id/AddCardDetails_buttonSaveDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/AddCreditDetails_adddetails"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>

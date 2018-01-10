@@ -1,0 +1,87 @@
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+    		xmlns:tools="http://schemas.android.com/tools"
+    		tools:context="com.VidyabhiSol.smartcredituse.CardAnalytics" >
+        
+<LinearLayout 
+    android:id="@+id/CardAnalytics_LinearLayoutContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:id="@+id/CardAnalytics_VendorContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/CardAnalytics_textViewTopVendors"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_midbluebg"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/cardanalytics_topvendors"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <RelativeLayout
+            android:id="@+id/CardAnalytics_chartViewVendor"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@android:color/white" >
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CardAnalytics_CardContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/CardAnalytics_textViewTopCards"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_midbluebg"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/cardanalytics_topcards"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <RelativeLayout
+            android:id="@+id/CardAnalytics_chartViewCards"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@android:color/white" >
+        </RelativeLayout>
+
+        
+
+    </LinearLayout>
+</LinearLayout>
+
+		<TextView
+		    android:id="@+id/CardAnalytics_textViewSpendingAnalysis"
+		    android:layout_width="wrap_content"
+		    android:layout_height="40dp"
+		    android:layout_below="@+id/CardAnalytics_LinearLayoutContainer"
+		    android:background="@drawable/ic_midbluebg"
+		    android:gravity="center_vertical|center_horizontal"
+		    android:text="@string/cardanalytics_SpendingAnalysis"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textColor="@android:color/white" />
+
+	<RelativeLayout
+	    android:id="@+id/CardAnalytics_chartViewDateWise"
+	    android:layout_width="match_parent"
+	    android:layout_height="220dp"
+	    android:layout_below="@+id/CardAnalytics_textViewSpendingAnalysis"
+	    android:background="@android:color/white" >
+
+</RelativeLayout>
+</RelativeLayout>
