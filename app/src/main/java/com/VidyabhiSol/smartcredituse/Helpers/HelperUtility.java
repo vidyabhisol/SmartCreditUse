@@ -21,6 +21,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.ParseException;
 import android.text.format.DateFormat;
+import android.util.Log;
 //import android.util.Log;
 
 public final class HelperUtility {
@@ -167,7 +168,7 @@ public final class HelperUtility {
 	}
 	public static Date parseDate(String dateStr, String bankAddr){
 		//Log.v("in PArseDate", dateStr + ":" + bankAddr);
-		Date returnDate = null;
+		Date returnDate = new Date();
 		SimpleDateFormat format = null; 
 		
 		String[] arrDateFormat = bankDateFormatMap.get(bankAddr);
@@ -189,111 +190,132 @@ public final class HelperUtility {
 	}
 	
 	public static void matchMessageUsingRegex(String address, String body,List<BankDataBin> _lstBankList,Context context,int version) {
-		
-		List<String> _cardList = new ArrayList<String>();
-		BankCardDataBin _bankBin;
-		final DBHelper _helper = new DBHelper(context);
-		int addedCardID=0;
-		CardTranDataBin _pBin;
-		CardPaymentDataBin _paymentBin;
-		//Add the message to be scanned in DB
-		_helper.addScannedMessages(new ScannedMessagesDataBin(address, body));
-		//Get the supported banks if not supplied
-		if(_lstBankList==null){
-			_lstBankList = _helper.getSupportedBanks(version);
-		}
-		_cardList = _helper.getBankCardNumberList();
-		
-		for(BankDataBin curBank : _lstBankList){
-			if(address.contains(curBank.get_smsAddress())){
-				if(Pattern.matches(curBank.get_configMsgSignatureRegex().toLowerCase(Locale.getDefault()), body.trim().toLowerCase(Locale.getDefault())))
-				{
-					Pattern p = Pattern.compile(curBank.get_configfieldExtractRegex(),Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-					Matcher m = p.matcher(body.trim());
-					HashMap<String, String> map = new HashMap<String,String>();
-					String[] arrField = curBank.get_configFieldsToExtract().split(",");
-					String cardID="";
-					while(m.find()){
-						for(int i=0;i<arrField.length;i++){
-							map.put(arrField[i], m.group(i+1));
-						}
+		try{
+			List<String> _cardList;
+			BankCardDataBin _bankBin;
+			final DBHelper _helper = new DBHelper(context);
+			int addedCardID=0;
+			CardTranDataBin _pBin;
+			CardPaymentDataBin _paymentBin;
+			//Add the message to be scanned in DB
+			_helper.addScannedMessages(new ScannedMessagesDataBin(address, body));
+			//Get the supported banks if not supplied
+			if(_lstBankList==null){
+				_lstBankList = _helper.getSupportedBanks(version);
+			}
+			BankDataBin selectedBank=null;
+			int maxBankId = 0;
+			if(_lstBankList!=null){
+				maxBankId = _lstBankList.get(0).get_id();
+				for(BankDataBin curBank:_lstBankList){
+					if(address.contains(curBank.get_smsAddress())){
+						selectedBank = curBank;
 					}
-						if(map.size()>0){
-							cardID = map.get(HelperUtility.FLDCCMASKEDNO).toLowerCase(Locale.getDefault());
-							cardID = cardID.substring(cardID.length()-4);
-							
-							
-							if(!_cardList.contains(cardID)){
-								_bankBin = new BankCardDataBin(curBank.get_id(), cardID, "", null, 50, 0, curBank.get_bankName());
-								_helper.addBankCardData(_bankBin);
-								_cardList.add(cardID);
-							}
-							addedCardID = _helper.getBankCardID(cardID);
-							
-							if(curBank.get_configMsgType().toLowerCase(Locale.getDefault()).contains("transaction")){
-								String avlCrdlmt = map.get(HelperUtility.FLDAVLCRLMT);
-								if(avlCrdlmt!=null)
-									avlCrdlmt = avlCrdlmt.replace(",", "");
-								else
-									avlCrdlmt = "0.0";
-								
-								String totCrdlmt = map.get(HelperUtility.FLDTOTCRLMT);
-								if(totCrdlmt!=null)
-									totCrdlmt = totCrdlmt.replace(",", "");
-								else
-									totCrdlmt = "0.0";
-								
-								
-								String tranDt = map.get(HelperUtility.FLDDATE);
-								
-								/*if(tranDt.contains(":")){
-									tranDt = tranDt.substring(0,tranDt.indexOf(":"));
-									tranDt = HelperUtility.ConvertDateFormat("yyyy-MM-dd","dd-MMM-yy",tranDt );
-								}*/
-								Date tranDtforDB = parseDate(tranDt,curBank.get_smsAddress()); 
-								
-								String tranAmt = map.get(HelperUtility.FLDTXNAMT);
-								if(tranAmt!=null)
-									tranAmt = tranAmt.replace(",", "");
-								else
-									tranAmt = "0.0";
-								
-								String tranVender = map.get(HelperUtility.FLDVENDOR);
-								
-								
-								_pBin = new CardTranDataBin(curBank.get_smsAddress(), cardID, Double.parseDouble(tranAmt)
-										, tranVender, tranDtforDB, Double.parseDouble(avlCrdlmt), Double.parseDouble(totCrdlmt),addedCardID);
-								
-								_helper.addCardTransaction(_pBin);
-							}
-						 else if(curBank.get_configMsgType().toLowerCase(Locale.getDefault()).contains("payment")){
-							
-								String tranAmt = map.get(HelperUtility.FLDTXNAMT);
-								if(tranAmt!=null)
-									tranAmt = tranAmt.replace(",", "");
-								else
-									tranAmt = "0.0";
-								
-								String tranDt = map.get(HelperUtility.FLDDATE);
-								/*
-								if(tranDt.contains(":")){
-									tranDt = tranDt.substring(0,tranDt.indexOf(":"));
-									tranDt = HelperUtility.ConvertDateFormat("yyyy-dd-mm","dd-MMM-yy",tranDt );
-								}*/
-								Date tranDtforDB = parseDate(tranDt,curBank.get_smsAddress());
-								
-								_paymentBin = new CardPaymentDataBin(addedCardID, tranDtforDB, cardID, Double.parseDouble(tranAmt), "");
-								_helper.addCardPayment(_paymentBin);
-								
-						 }
+					if(curBank.get_id()>maxBankId){
+						maxBankId = curBank.get_id();
 					}
-					break;
 				}
 			}
-		
+			//get Current card list
+			_cardList = _helper.getBankCardNumberList();
+			String cardID="",tranAmount="",tranVender="",avlCrdlmt="0.0",totCrdlmt="0.0",tranDate="",cardBank="";
+			String msgType="";
+			Pattern amtPat = Pattern.compile("(?i)(?:(?:RS|INR|MRP)\\.?\\s?)(\\d+(:?\\,\\d+)?(\\,\\d+)?(\\.\\d{1,2})?)",Pattern.CASE_INSENSITIVE);
+			Pattern amtMerchant = Pattern.compile("(?i)(?:\\sat\\s|in\\*)([A-Za-z0-9]*\\s?-?\\s?[A-Za-z0-9]*\\s?-?\\.?)",Pattern.CASE_INSENSITIVE);
+			//Pattern amtDate = Pattern.compile("(?i)(?:\\son\\s|in\\*)(\\d+[\\s-.][a-zA-Z]*[\\s-.]\\d+)|(\\d+-\\d+-\\d+:\\d+:\\d+:\\d+)|(\\d+\\/\\d+\\/\\d+)|(\\d+[.]\\d+[.]\\d+)");
+			Pattern amtDate = Pattern.compile("(?i)(\\son\\s)(\\d+[./\\-\\s:][0-9A-Za-z]*[./\\-\\s:]\\d+)",Pattern.CASE_INSENSITIVE);
+			Pattern amtCardBank = Pattern.compile("(?i)(?:\\smade on|ur|made a\\s|in\\*)([A-Za-z]*\\s?-?\\s[A-Za-z]*\\s?-?\\s[A-Za-z]*\\s?-?)",Pattern.CASE_INSENSITIVE);
+			Pattern amtCard = Pattern.compile("([0-9]*[Xx\\*]*[0-9]*[Xx\\*]+[0-9]{3,})|((ending)[\\s-][-\\d+]*[\\s-])",Pattern.CASE_INSENSITIVE);
+			Pattern paymentMsg = Pattern.compile("(payment)[\\w\\s]+(received|recieved)|((received|recieved)[\\w\\s]+(payment))",Pattern.CASE_INSENSITIVE);
+			Matcher m = amtPat.matcher(body);
+			if(m.find()){
+				tranAmount = formatAmount(m.group(0));
+			}
+			m = amtMerchant.matcher(body);
+			if(m.find()){
+				tranVender = formatMerchant(m.group(0));
+			}
+			m = amtCard.matcher(body);
+			if(m.find()){
+				cardID = m.group(0);
+			}
+			m = amtDate.matcher(body);
+			if(m.find()){
+				tranDate = formatTranDate(m.group(0));
+			}
+			m = paymentMsg.matcher(body);
+			if(m.find()){
+				msgType = "payment";
+			} else{
+				msgType = "tran";
+			}
+			m = amtCardBank.matcher(body);
+			if(m.find()){
+				cardBank = m.group(0);
+			}
+			//Bank is not supported then add to supported banks
+
+			if(selectedBank==null){
+				selectedBank = new BankDataBin(maxBankId,cardBank,address,0);
+				_helper.addSupportedBank(selectedBank);
+			}
+
+			if(!_cardList.contains(cardID)){
+				_bankBin = new BankCardDataBin(selectedBank.get_id(), cardID, "", null, 50, 0, selectedBank.get_bankName());
+				_helper.addBankCardData(_bankBin);
+				_cardList.add(cardID);
+			}
+			addedCardID = _helper.getBankCardID(cardID);
+
+			Date tranDtforDB = parseDate(tranDate,selectedBank.get_smsAddress());
+
+			if(msgType.equalsIgnoreCase("tran")){
+
+				_pBin = new CardTranDataBin(selectedBank.get_smsAddress(), cardID, Double.parseDouble(tranAmount)
+						, tranVender, tranDtforDB, Double.parseDouble(avlCrdlmt), Double.parseDouble(totCrdlmt),addedCardID);
+
+				_helper.addCardTransaction(_pBin);
+
+			} else if(msgType.equalsIgnoreCase("payment")){
+				_paymentBin = new CardPaymentDataBin(addedCardID, tranDtforDB, cardID, Double.parseDouble(tranAmount), "");
+				_helper.addCardPayment(_paymentBin);
+			}
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
-		
-}
+
+	private static String formatMerchant(String merchant){
+		String strMerchant="";
+		strMerchant = merchant.toLowerCase();
+		strMerchant = strMerchant.replaceFirst("(at)\\s","");
+		strMerchant = strMerchant.replaceFirst("\\s(on)","");
+		strMerchant = merchant.trim();
+		return strMerchant;
+	}
+	private  static String formatTranDate(String tranDate){
+		String formattedDate = "";
+		formattedDate = tranDate.toLowerCase();
+		formattedDate = formattedDate.replaceFirst("(on)\\s","");
+		formattedDate = formattedDate.trim();
+		return formattedDate;
+	}
+	private static String formatAmount(String amt){
+		String formattedAmt = "";
+		try{
+			amt = amt.toLowerCase();
+			formattedAmt = amt.replaceAll("[^\\d+(\\.\\d{1,2})?]", "");
+			formattedAmt = formattedAmt.replace(",","");
+			if(formattedAmt.substring(0,1).equalsIgnoreCase(".")){
+				formattedAmt = formattedAmt.substring(1);
+			}
+			formattedAmt = formattedAmt.trim();
+			return formattedAmt;
+		} catch(Exception ex){
+			ex.printStackTrace();
+			return "";
+		}
+	}
 	
 
 }

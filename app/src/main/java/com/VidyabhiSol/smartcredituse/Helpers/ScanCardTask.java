@@ -46,7 +46,8 @@ public class ScanCardTask extends AsyncTask<Void, Integer, Boolean>{
 				whereClause.append(" or ");
 			}
 		}
-		Cursor c = cr.query(message, reqCols, whereClause.toString() , values , "address");
+		Cursor c = cr.query(message, reqCols, "" , null , "address");
+
 		int numMessages = c.getCount(); 
 		int i=1;
 		if(c.getCount()>0){

@@ -1152,6 +1152,16 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.close();
 		return id;
 	}
+	public long addSupportedBank(BankDataBin bin){
+		long id;
+		db = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(Table_BankMaster.COLUMN_BANKNAME,bin.get_bankName());
+		values.put(Table_BankMaster.COLUMN_ISDELETED,0);
+		values.put(Table_BankMaster.COLUMN_SMSADDRESS,bin.get_smsAddress());
+		id = db.insert(Table_BankMaster.TABLE_BANKMASTER, null, values);
+		return id;
+	}
 	public long addBankCardData(BankCardDataBin b){
 		long id;
 		db = this.getWritableDatabase();
